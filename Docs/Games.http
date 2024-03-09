@@ -1,0 +1,47 @@
+# This conveniently could be place inside the corresponding feature folder
+# @no-reject-unauthorized
+
+@platformId = 1
+@resourceUri = {{Url}}/platforms/{{platformId}}
+
+###
+
+# @name GamesForPlatform
+# @title Get Games for Platform
+GET {{resourceUri}}/games
+
+###
+
+# @name AddGame
+# @title Add Game
+POST {{resourceUri}}/games
+Content-Type: application/json
+
+{
+  "Name": "Game 1",
+  "Publisher": "Some"
+}
+
+{{
+  $global.gameId = response.parsedBody.id
+}}
+
+###
+
+# @name UpdateGame
+# @title Update Game
+PUT {{resourceUri}}/games/{{$global.gameId}}
+Content-Type: application/json
+
+{
+  "Name": "Game updated",
+  "Publisher": "Some"
+}
+
+###
+
+# @name RemoveGame
+# @title Remove Game
+DELETE {{resourceUri}}/games/{{$global.gameId}}
+
+###
