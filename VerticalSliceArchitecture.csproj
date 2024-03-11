@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="http-client.env.json.user" />
+    <None Include="Docs\http-client.env.json.user" />
   </ItemGroup>
 
   <ItemGroup>

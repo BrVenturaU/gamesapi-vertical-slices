@@ -1,10 +1,12 @@
 ﻿
+using VerticalSliceArchitecture.Attributes;
 using VerticalSliceArchitecture.Data;
 using VerticalSliceArchitecture.Features.Games;
 using VerticalSliceArchitecture.Features.Platforms;
 
 namespace VerticalSliceArchitecture.Services
 {
+    [ServiceMarker]
     public class RepositoryManager : IRepositoryManager
     {
         private readonly AppDbContext _context;
