@@ -11,13 +11,17 @@ namespace VerticalSliceArchitecture.Extensions
 
             foreach (var serviceType in serviceTypes)
             {
-                var interfaceType = serviceType.GetInterface($"I{serviceType.Name}");
-                if(interfaceType is null)
+                var attribute = serviceType.GetCustomAttribute<ServiceMarkerAttribute>();
+
+                if(attribute.InterfaceType is null)
                 {
                     services.AddScoped(serviceType);
                     continue;
                 }
-                services.AddScoped(interfaceType, serviceType);
+                if (!attribute.InterfaceType.IsAssignableFrom(serviceType))
+                    throw new Exception($"The type {serviceType.Name} does not provide an implementation for the service {attribute.InterfaceType.Name}.");
+
+                services.AddScoped(attribute.InterfaceType, serviceType);
             }
 
             return services;

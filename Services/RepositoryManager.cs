@@ -6,7 +6,7 @@ using VerticalSliceArchitecture.Features.Platforms;
 
 namespace VerticalSliceArchitecture.Services
 {
-    [ServiceMarker]
+    [ServiceMarker(typeof(IRepositoryManager))]
     public class RepositoryManager : IRepositoryManager
     {
         private readonly AppDbContext _context;
